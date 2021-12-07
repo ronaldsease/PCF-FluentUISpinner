@@ -11,12 +11,7 @@
       <value name="Medium" display-name-key="Medium" description-key="Medium Spinner.">2</value>
       <value name="Large" display-name-key="Large" description-key="Large Spinner.">3</value>
     </property>
-    <property name="LabelPosition" display-name-key="Label Position" description-key="Location of the Spinner Label relative to the Spinner(Top, Right, Bottom, Left)." of-type="Enum" usage="input" required="true" default-value="1">
-      <value name="Top" display-name-key="Top" description-key="Top position for spinner label.">0</value>
-      <value name="Right" display-name-key="Right" description-key="Right position for spinner label.">1</value>
-      <value name="Bottom" display-name-key="Bottom" description-key="Bottom position for spinner label.">2</value>
-      <value name="Left" display-name-key="Left" description-key="Left position for spinner label.">3</value>
-    </property>
+    <property name="LabelPosition" display-name-key="Label Position" description-key="Location of the Spinner Label relative to the Spinner(top, right, bottom, left)." of-type="SingleLine.Text" usage="input" required="true" default-value="bottom"/>
     <property name="SpinnerLabel" display-name-key="Spinner Label" description-key="The label to go with the spinner" of-type="SingleLine.Text" usage="input"/>
     <resources>
       <code path="index.ts" order="1" />

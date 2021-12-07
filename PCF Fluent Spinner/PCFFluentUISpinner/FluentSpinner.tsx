@@ -1,44 +1,19 @@
 import * as React from 'react';
-import { Spinner, SpinnerSize } from '@fluentui/react/lib/Spinner';
-import { Label } from '@fluentui/react/lib/Label';
-import { IStackProps, Stack } from '@fluentui/react/lib/Stack';
+import { Spinner, SpinnerSize, SpinnerLabelPosition } from '@fluentui/react/lib/Spinner';
 
-export const SpinnerBasicExample: React.FunctionComponent = () => {
+export interface IFluentSpinnerProps {
+  visible: boolean;
+  spinnerSize: SpinnerSize;
+  spinnerLabel: string | undefined;
+  spinnerLabelPosition: SpinnerLabelPosition;
+};
+export const FluentSpinner: React.FunctionComponent = (props: any) => {
   // This is just for laying out the label and spinner (spinners don't have to be inside a Stack)
-  const rowProps: IStackProps = { horizontal: true, verticalAlign: 'center' };
-  const tokens = {
-    sectionStack: {
-      childrenGap: 10,
-    },
-    spinnerStack: {
-      childrenGap: 20,
-    },
-  };
-
-  const [loadingLabel, setLoadingLabel] = React.useState('');
-  const [spinnerSize, setSpinnerSize] = React.useState('');
+  const propsCasted = props as IFluentSpinnerProps;
 
   return (
-    <Stack tokens={tokens.sectionStack}>
-      <Stack {...rowProps} tokens={tokens.spinnerStack}>
-        <Label>Extra small spinner</Label>
-        <Spinner size={SpinnerSize.xSmall} />
-      </Stack>
-
-      <Stack {...rowProps} tokens={tokens.spinnerStack}>
-        <Label>Small spinner</Label>
-        <Spinner size={SpinnerSize.small} />
-      </Stack>
-
-      <Stack {...rowProps} tokens={tokens.spinnerStack}>
-        <Label>Medium spinner</Label>
-        <Spinner size={SpinnerSize.medium} />
-      </Stack>
-
-      <Stack {...rowProps} tokens={tokens.spinnerStack}>
-        <Label>Large spinner</Label>
-        <Spinner size={SpinnerSize.large} />
-      </Stack>
-    </Stack>
+    <div>
+      {propsCasted.visible && <Spinner size={propsCasted.spinnerSize} label={propsCasted.spinnerLabel} labelPosition={propsCasted.spinnerLabelPosition}></Spinner>}
+    </div>
   );
 };

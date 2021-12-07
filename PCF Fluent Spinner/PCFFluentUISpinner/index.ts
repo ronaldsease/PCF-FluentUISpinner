@@ -1,9 +1,17 @@
 import {IInputs, IOutputs} from "./generated/ManifestTypes";
-import { Spinner, SpinnerSize } from '@fluentui/react/lib/Spinner';
-import { Label } from '@fluentui/react/lib/Label';
-import { IStackProps, Stack } from '@fluentui/react/lib/Stack';
-
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import {FluentSpinner, IFluentSpinnerProps} from './FluentSpinner';
+import { SpinnerSize, SpinnerLabelPosition } from "@fluentui/react/lib/Spinner";
 export class PCFFluentUISpinner implements ComponentFramework.StandardControl<IInputs, IOutputs> {
+	context: ComponentFramework.Context<IInputs>;
+	theContainer: HTMLDivElement;
+	visible: boolean;
+	spinnerSizeRaw: string;
+	spinnerPositionRaw: SpinnerLabelPosition;
+	spinnerLabel: string | null;
+	spinnerSize: SpinnerSize;
+	props: any;
 
 	/**
 	 * Empty constructor.
@@ -23,7 +31,8 @@ export class PCFFluentUISpinner implements ComponentFramework.StandardControl<II
 	 */
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement): void
 	{
-		// Add control initialization code
+		this.context = context;
+		this.theContainer = container;
 	}
 
 
@@ -33,7 +42,26 @@ export class PCFFluentUISpinner implements ComponentFramework.StandardControl<II
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
-		// Add code to update control view
+		this.context = context;
+		debugger;
+		this.visible = context.parameters.Visible.raw;
+		this.spinnerSizeRaw = context.parameters.SpinnerSize.raw;
+		this.spinnerPositionRaw = context.parameters.LabelPosition.raw as SpinnerLabelPosition ;
+		this.spinnerLabel = context.parameters.SpinnerLabel?.raw;
+
+		this.spinnerSize = this.RawSpinnerSizeValueToSpinnerSizeEnum[this.spinnerSizeRaw];
+		this.props = {
+			visible: this.visible,
+			spinnerSize: this.spinnerSize,
+			spinnerLabelPosition: this.spinnerPositionRaw,
+			spinnerLabel: this.spinnerLabel ?? ''			
+		};
+		ReactDOM.render(
+			React.createElement(
+				FluentSpinner, this.props
+			),
+			this.theContainer
+		);
 	}
 
 	/**
@@ -44,6 +72,7 @@ export class PCFFluentUISpinner implements ComponentFramework.StandardControl<II
 	{
 		return {};
 	}
+	
 
 	/**
 	 * Called when the control is to be removed from the DOM tree. Controls should use this call for cleanup.
@@ -53,4 +82,14 @@ export class PCFFluentUISpinner implements ComponentFramework.StandardControl<II
 	{
 		// Add code to cleanup control if necessary
 	}
+
+	private RawSpinnerSizeValueToSpinnerSizeEnum : Record<string, SpinnerSize> = {
+		"0": SpinnerSize.xSmall,
+		"1": SpinnerSize.small,
+		"2": SpinnerSize.medium,
+		"3": SpinnerSize.large
+	}
+	
+
 }
+
