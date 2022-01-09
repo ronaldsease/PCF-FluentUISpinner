@@ -43,7 +43,6 @@ export class PCFFluentUISpinner implements ComponentFramework.StandardControl<II
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
 		this.context = context;
-		debugger;
 		this.visible = context.parameters.Visible.raw;
 		this.spinnerSizeRaw = context.parameters.SpinnerSize.raw;
 		this.spinnerPositionRaw = context.parameters.LabelPosition.raw as SpinnerLabelPosition ;
