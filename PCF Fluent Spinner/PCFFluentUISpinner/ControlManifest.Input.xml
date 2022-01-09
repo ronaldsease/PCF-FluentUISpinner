@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="PCFFluentUISPinner" constructor="PCFFluentUISpinner" version="0.0.1" display-name-key="PCF Fluent UI Spinner" description-key="PCFFluentUISpinner description" control-type="standard" preview-image="img/preview.png">
+  <control namespace="PCFFluentUISPinner" constructor="PCFFluentUISpinner" version="0.0.2" display-name-key="PCF Fluent UI Spinner" description-key="PCFFluentUISpinner description" control-type="standard" preview-image="img/preview.png">
     <property name="Visible" display-name-key="Visible" description-key="Set visbility of the PCF Control." of-type="TwoOptions" usage="input" required="true" default-value="0">
       <value name="Hide" display-name-key="Hide" description-key="Hide spinner control.">0</value>
       <value name="Show" display-name-key="Show" description-key="Show spinner control.">1</value>
@@ -11,8 +11,8 @@
       <value name="Medium" display-name-key="Medium" description-key="Medium Spinner.">2</value>
       <value name="Large" display-name-key="Large" description-key="Large Spinner.">3</value>
     </property>
-    <property name="LabelPosition" display-name-key="Label Position" description-key="Location of the Spinner Label relative to the Spinner(top, right, bottom, left)." of-type="SingleLine.Text" usage="input" required="true" default-value="bottom"/>
-    <property name="SpinnerLabel" display-name-key="Spinner Label" description-key="The label to go with the spinner" of-type="SingleLine.Text" usage="input"/>
+    <property name="LabelPosition" display-name-key="Label Position" description-key="Location of the Spinner Label relative to the Spinner(top, right, bottom, left)." of-type="SingleLine.Text" usage="input" required="true" default-value="bottom" />
+    <property name="SpinnerLabel" display-name-key="Spinner Label" description-key="The label to go with the spinner" of-type="SingleLine.Text" usage="input" />
     <resources>
       <code path="index.ts" order="1" />
       <css path="css/PCFFluentUISpinner.css" order="1" />
